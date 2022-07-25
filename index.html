@@ -9,13 +9,17 @@
 <script>
     const root = document.querySelector("#root");
     const h3 = React.createElement(
-        "h3", 
-        {id:"sexy-span"}, 
+        "h3",
+        {
+            onMouseEnter: () => console.log("mouse entered"),
+        },
         "Hello I'm a span"
-        );
-    const btn = React.createElement("button", null, "Click me!");
+    );
+    const btn = React.createElement("button", {
+        onClick: () => console.log("I'm clicked"),
+    }, "Click me!");
     const container = React.createElement("div", null, [h3, btn]);
     ReactDOM.render(container, root);
-</script>   
+</script>
 
 </html>
