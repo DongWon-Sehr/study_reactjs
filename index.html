@@ -11,26 +11,23 @@
     const root = document.querySelector("#root");
     let counter = 0;
 
-    function countUp() {
-        counter += 1;
-        render();
+    function App() {
+        const data = React.useState(0);
+        console.log(data);
+        
+        return (
+            <div>
+                <h3>
+                    Total Click: 0
+                </h3>
+                <button >
+                    Click me!
+                </button>
+            </div>
+        );
     }
 
-    function render() {
-        ReactDOM.render(<App />, root);
-    }
 
-    const App = () => (
-        <div>
-            <h3>
-                Total Click: {counter}
-            </h3>
-            <button onClick={countUp}>
-                Click me!
-            </button>
-        </div>
-    );
-    
     render();
 </script>
 
