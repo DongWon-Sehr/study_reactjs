@@ -9,39 +9,30 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
     function App() {
-        function SaveBtn() {
+        const [value, setValue] = React.useState("Save Changes");
+        const changeValue = () => { setValue("Revert Changes") };
+
+        function Btn({ text, onClick }) {
             return (
                 <button
-                style={{
-                    backgroundColor: "tomato",
-                    color: "white",
-                    padding: "10px 20px",
-                    border: 0,
-                    borderRadius: 10,
-                }}>
-                Save Changes
+                    style={{
+                        backgroundColor: "tomato",
+                        color: "white",
+                        padding: "10px 20px",
+                        border: 0,
+                        borderRadius: 10,
+                    }}
+                    onClick={onClick}
+                >
+                    {text}
                 </button>
-            );
-        }
-        function ConfirmBtn() {
-            return (
-                <button
-                style={{
-                    backgroundColor: "tomato",
-                    color: "white",
-                    padding: "10px 20px",
-                    border: 0,
-                    borderRadius: 10,
-                }}>
-                    Confirm
-                    </button>
             );
         }
 
         return (
             <div>
-                <SaveBtn/>
-                <ConfirmBtn/>
+                <Btn text={value} onClick={changeValue} />
+                <Btn text="Cancel" />
             </div>
         );
     }
