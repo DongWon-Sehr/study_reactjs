@@ -10,41 +10,41 @@
 <script type="text/babel">
     function App() {
         const [inputValue, setInputValue] = React.useState();
-        const [inverted, setInverted] = React.useState(false);
+        const [target_id, setTargetId] = React.useState();
         const onChange = (event) => {
+            setTargetId(event.target.id);
             setInputValue(event.target.value);
         };
-        const reset = () => {
-            setInputValue("");
-        };
-        const onInvert = () => {
-            reset();
-            setInverted(current => !current);
+        const onKeyUp = (event) => {
+            setTargetId(event.target.id);
+            setInputValue(event.target.value);
         };
 
         return (
             <div>
                 <h1>Super Converter</h1>
-                <label htmlFor="minutes">Minutes</label>
                 <input
-                    value={inputValue === "" ? inputValue : inverted ? inputValue * 60 : inputValue}
+                    value={target_id === "minutes" ? inputValue : inputValue === "" ? inputValue : inputValue * 60}
                     id="minutes"
                     placeholder="Minutes"
                     type="number"
                     onChange={onChange}
-                    disabled={inverted}
+                    onKeyUp={onKeyUp}
                 />
-                <label htmlFor="hours" >Hours</label>
+                <label htmlFor="minutes"> Minutes</label>
+
+                <br />
+
                 <input
-                    value={inputValue === "" ? inputValue : inverted ? inputValue : inputValue/60}
+                    value={target_id === "hours" ? inputValue : inputValue === "" ? inputValue : inputValue / 60}
                     id="hours"
                     placeholder="Hours"
                     type="number"
                     onChange={onChange}
-                    disabled={!inverted}
+                    onKeyUp={onKeyUp}
                 />
-                <button onClick={reset}>Reset</button>
-                <button onClick={onInvert}>{inverted ? "Turn Back" : "Invert"}</button>
+                <label htmlFor="hours"> Hours</label>
+
             </div>
         );
     }
